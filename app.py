@@ -87,4 +87,5 @@ def get_pages():
     browseTheLinks(soup, root_path, domain)
     return jsonify(all_pages)
 
-app.run(port=5000,host='localhost',debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)

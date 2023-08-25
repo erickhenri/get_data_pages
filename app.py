@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlsplit
 from flask import Flask, jsonify, request
+import os
 
 all_pages = []
 headers = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
@@ -88,4 +89,8 @@ def get_pages():
     return jsonify(all_pages)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Obtém a porta do ambiente, definida pelo Railway
+    port = int(os.environ.get("PORT", 5000))
+    
+    # Define o host como '0.0.0.0' para que o aplicativo seja acessível externamente
+    app.run(host='0.0.0.0', port=port)
